@@ -1,49 +1,32 @@
-# Logs
-logs
-*.log
-/logs
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Deployment builds
-dist
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
 
-# Dependency directories
-node_modules
-npm/node_modules
+# testing
+/coverage
 
-# NPM / Yarn
-.npm
-.node_repl_history
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
 npm-debug.log*
-.yarn
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
 
-# Generated assets
-/assets
-server/views/master.pug
-server/views/legacy/master.pug
-server/views/setup.pug
+# local env files
+.env*.local
 
-# Webpack
-.webpack-cache
-.fusebox
-
-# Config Files
-/config.yml
-
-# Data directories
-/repo
-/data
-/uploads
-/content
-/temp
-*.sqlite
-
-# IDE exclude
-.idea
-*.sublime-*
-
-# Test results
-test-results/
-.scannerwork
-
-# Localization Resources
-/server/locales/**/*.yml
+# vercel
+.vercel
