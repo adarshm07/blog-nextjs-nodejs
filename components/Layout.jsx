@@ -5,7 +5,7 @@ export default function Layout({ children }) {
     <div
       style={{
         display: "grid",
-        gridTemplateColumns: "20% 78%",
+        gridTemplateColumns: "26% 72%",
         // gap: "40px",
         height: "100%",
       }}

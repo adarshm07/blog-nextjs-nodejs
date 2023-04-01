@@ -55,8 +55,9 @@ export default function SideBar() {
             <li
               className={
                 router.pathname.toLowerCase().includes("/dashboard") &&
-                !router.pathname.toLowerCase().includes("/dashboard/posts") &&
-                "active"
+                !router.pathname.toLowerCase().includes("/dashboard/posts")
+                  ? "active"
+                  : null
               }
             >
               <a href="#" onClick={() => router.push("/dashboard")}>
@@ -66,12 +67,13 @@ export default function SideBar() {
             </li>
             <li
               className={
-                router.pathname.toLowerCase().includes("/dashboard/posts") &&
-                "active"
+                router.pathname.toLowerCase().includes("/dashboard/posts")
+                  ? "active"
+                  : null
               }
             >
               <a
-                href="javascript:;"
+                href="#"
                 onClick={() => router.push("/dashboard/posts")}
               >
                 <i className="las la-bullhorn"></i>
@@ -80,10 +82,12 @@ export default function SideBar() {
             </li>
             <li
               className={
-                router.pathname.toLowerCase().includes("alert") && "active"
+                router.pathname.toLowerCase().includes("alert")
+                  ? "active"
+                  : null
               }
             >
-              <a href="javascript:;" onClick={() => router.push("/alert")}>
+              <a href="#" onClick={() => router.push("/alert")}>
                 <i className="las la-exclamation-triangle"></i>
                 <span>Alerts</span>
               </a>

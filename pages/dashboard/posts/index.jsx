@@ -13,7 +13,7 @@ export default function Posts() {
     headers: {},
   };
 
-  useEffect(() => {
+  const fetchBlog = async () => {
     axios(config)
       .then(function (response) {
         setPosts(response.data.data);
@@ -21,9 +21,22 @@ export default function Posts() {
       .catch(function (error) {
         console.log(error);
       });
+  };
+
+  useEffect(() => {
+    fetchBlog();
   }, []);
 
   // console.log(posts);
+
+  const deletePostById = async (id) => {
+    await axios
+      .delete(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/blog/delete/${id}`)
+      .then((res) => {
+        console.log("Post Deleted", res);
+        fetchBlog();
+      });
+  };
 
   const data = [
     {
@@ -80,14 +93,39 @@ export default function Posts() {
       <div style={{ position: "relative" }}>
         <h2>Posts</h2>
         <div>
-          {/* {posts &&
+          {posts &&
             posts.map((post, index) => {
               return (
-                <div key={index}> */}
-          <PostCard posts={data} />
-          {/* </div>
+                <div
+                  key={index}
+                  className="d-flex justify-content-between align-items-center"
+                >
+                  <p className="m-0">{post.title}</p>
+                  <div>
+                    <button
+                      className="btn btn-sm btn-text"
+                      onClick={() => window.open(`/blog/${post._id}`)}
+                    >
+                      View
+                    </button>
+                    <button
+                      className="btn btn-sm btn-text"
+                      onClick={() =>
+                        window.open(`/dashboard/posts/${post._id}`)
+                      }
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="btn btn-sm btn-text"
+                      onClick={(e) => deletePostById(post._id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </div>
               );
-            })} */}
+            })}
         </div>
       </div>
     </Layout>

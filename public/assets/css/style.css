@@ -3088,3 +3088,7 @@ span.logo_text {
     width: 1rem;
     height: 1vw;
 } */
+
+.mantine-RichTextEditor-content {
+  /* min-height: 400px; */
+}
