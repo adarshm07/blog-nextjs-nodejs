@@ -2,10 +2,35 @@ import Head from "next/head";
 import Image from "next/image";
 // import { Inter } from "next/font/google";
 import Login from "@/container/Login";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { PostCard } from "@/components/PostCard";
 
 // const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const [posts, setPosts] = useState([]);
+
+  var config = {
+    method: "get",
+    maxBodyLength: Infinity,
+    url: `${process.env.NEXT_PUBLIC_API_URL}/api/v1/blog/getall`,
+    headers: {},
+  };
+
+  const fetchBlog = async () => {
+    axios(config)
+      .then(function (response) {
+        setPosts(response.data.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    fetchBlog();
+  }, []);
   return (
     <>
       <Head>
@@ -15,7 +40,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <Login />
+        <PostCard posts={posts} />
       </div>
     </>
   );

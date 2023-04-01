@@ -72,24 +72,9 @@ export default function SideBar() {
                   : null
               }
             >
-              <a
-                href="#"
-                onClick={() => router.push("/dashboard/posts")}
-              >
+              <a href="#" onClick={() => router.push("/dashboard/posts")}>
                 <i className="las la-bullhorn"></i>
                 <span>Posts</span>
-              </a>
-            </li>
-            <li
-              className={
-                router.pathname.toLowerCase().includes("alert")
-                  ? "active"
-                  : null
-              }
-            >
-              <a href="#" onClick={() => router.push("/alert")}>
-                <i className="las la-exclamation-triangle"></i>
-                <span>Alerts</span>
               </a>
             </li>
           </ul>

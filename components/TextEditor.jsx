@@ -13,6 +13,7 @@ import SubScript from "@tiptap/extension-subscript";
 import { useDispatch } from "react-redux";
 import { updateAction, updatePost } from "../store/postSlice";
 import { useRouter } from "next/router";
+import Image from "@tiptap/extension-image";
 
 function GetContent() {
   const router = useRouter();
@@ -40,11 +41,21 @@ export default function TextEditor({ content }) {
       Link,
       Superscript,
       SubScript,
+      Image,
       Highlight,
       TextAlign.configure({ types: ["heading", "paragraph"] }),
     ],
     content,
   });
+
+  function addImage() {
+    const url = window.prompt("URL");
+
+    if (url) {
+      editor.chain().focus().setImage({ src: url }).run();
+    }
+    return url;
+  }
 
   return (
     <RichTextEditor editor={editor}>
@@ -57,6 +68,7 @@ export default function TextEditor({ content }) {
           <RichTextEditor.ClearFormatting />
           <RichTextEditor.Highlight />
           <RichTextEditor.Code />
+          <button onClick={addImage}>add image from URL</button>
         </RichTextEditor.ControlsGroup>
 
         <RichTextEditor.ControlsGroup>
@@ -86,12 +98,10 @@ export default function TextEditor({ content }) {
           <RichTextEditor.AlignJustify />
           <RichTextEditor.AlignRight />
         </RichTextEditor.ControlsGroup>
+        <GetContent />
       </RichTextEditor.Toolbar>
 
       <RichTextEditor.Content />
-      <RichTextEditor.Control>
-        <GetContent />
-      </RichTextEditor.Control>
     </RichTextEditor>
   );
 }
