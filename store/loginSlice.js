@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-export const loginSlice = createSlice({
+const loginSlice = createSlice({
   name: "login",
   initialState: {
     email: "",
@@ -80,3 +80,4 @@ export const selectIsLoading = (state) =>
   state.login ? state.login.isLoading : false;
 export const selectLoginStatus = (state) => state.login.loginStatus;
 export const selectErrors = (state) => state.login.errors;
+export default loginSlice.reducer;
