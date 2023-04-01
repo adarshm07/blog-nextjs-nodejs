@@ -1,47 +1,18 @@
-import React, { useState, useEffect } from "react";
-
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// import { useHistory } from "react-router";
-// import { postLoginFormData } from "../store/actions";
+import { login, selectIsLoading, selectLoginStatus } from "../store/loginSlice";
+
 const Login = () => {
   const dispatch = useDispatch();
-  const loginStatus = "noerror";
-  //   const history = useHistory();
+  const isLoading = useSelector(selectIsLoading);
+  const loginStatus = useSelector((state) => state.login?.loginStatus); // add a check for the existence of the `login` slice
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const [loginInput, setLoginInput] = useState({
-    email: "",
-    password: "",
-    // email: "spherehuntapp@gmail.com",
-    // password:"111111"
-  });
-
-  const handleForm = (e) => {
-    e.preventDefault();
-    console.log(loginInput);
-    dispatch(postLoginFormData(loginInput));
-  };
-
-  //   const { loginStatus } = useSelector((state) => {
-  //     console.log(state);
-  //     return {
-  //       loginStatus:
-  //         state.Auth.login && state.Auth.login.data
-  //           ? state.Auth.login.data.status
-  //             ? "success"
-  //             : "error"
-  //           : "",
-  //     };
-  //   });
-  const handleInput = (e) => {
-    setLoginInput({ ...loginInput, [e.target.name]: e.target.value });
-  };
-  //   console.log(loginStatus);
-
-  //   useEffect(() => {
-  //     if (loginStatus && loginStatus === "success") {
-  //     //   history.push("/Dashboard");
-  //     }
-  //   }, [loginStatus]);
+  //   const handleLogin = (e) => {
+  //     e.preventDefault();
+  //     dispatch(login({ email, password }));
+  //   };
 
   return (
     <div>
@@ -56,16 +27,18 @@ const Login = () => {
             <div className="logo">
               <div className="logo_row">
                 <img src="images/logo/logo_icon.svg" alt="" />
-                <span className="logo_text">SphereHunt</span>
+                <span className="logo_text">Foster</span>
               </div>
             </div>
 
             <h3 className="text-center login_title">Login</h3>
-            {loginStatus && loginStatus === "error" && (
-              <div class="alert alert-danger">Invalid username or password</div>
+            {loginStatus === "error" && (
+              <div className="alert alert-danger">
+                Invalid username or password
+              </div>
             )}
             <div className="form-group">
-              <label for="email" className="txt">
+              <label htmlFor="email" className="txt">
                 Email Address
               </label>
               <br />
@@ -73,10 +46,10 @@ const Login = () => {
                 type="text"
                 name="email"
                 id="email"
-                value={loginInput.email}
-                onChange={handleInput}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className={
-                  loginStatus && loginStatus === "error"
+                  loginStatus === "error"
                     ? "form-control input-box is-invalid"
                     : "form-control input-box "
                 }
@@ -84,7 +57,7 @@ const Login = () => {
               />
             </div>
             <div className="form-group">
-              <label for="password" className="txt">
+              <label htmlFor="password" className="txt">
                 Password
               </label>
               <div className="password">
@@ -92,10 +65,10 @@ const Login = () => {
                   type="password"
                   name="password"
                   id="password"
-                  value={loginInput.password}
-                  onChange={handleInput}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className={
-                    loginStatus && loginStatus === "error"
+                    loginStatus === "error"
                       ? "form-control input-box is-invalid"
                       : "form-control input-box "
                   }
@@ -104,7 +77,7 @@ const Login = () => {
                 <i className="fa fa-eye-slash passShowHide"></i>
               </div>
             </div>
-            <label for="remember-me" className="remember_me">
+            <label htmlFor="remember-me" className="remember_me">
               <input id="remember-me" name="remember-me" type="checkbox" />
               &nbsp;
               <span>Remember me</span>
