@@ -14,6 +14,10 @@ import { useDispatch } from "react-redux";
 import { updateAction, updatePost } from "../store/postSlice";
 import { useRouter } from "next/router";
 import Image from "@tiptap/extension-image";
+import { ImageUpload } from "./ImageUpload";
+import ImageUploaderModal from "./ImageUploaderModal";
+import { useState } from "react";
+import { IconUpload } from "@tabler/icons-react";
 
 function GetContent() {
   const router = useRouter();
@@ -30,10 +34,33 @@ function GetContent() {
       dispatch(updateAction("editpost"));
     }
   };
-  return <button onClick={handleSubmit}>Submit</button>;
+
+  const handleDraft = (e) => {
+    console.log("disabled");
+  };
+
+  return (
+    <div>
+      <button className="btn btn-sm btn-primary rounded" onClick={handleSubmit}>
+        Publish
+      </button>
+      <button
+        className="btn btn-sm btn-outlined-secondary rounded disabled"
+        style={{ cursor: "not-allowed" }}
+        onClick={handleDraft}
+      >
+        Draft
+      </button>
+    </div>
+  );
 }
 
 export default function TextEditor({ content }) {
+  const [showModal, setShowModal] = useState(false);
+
+  const handleShowModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
+
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -48,18 +75,29 @@ export default function TextEditor({ content }) {
     content,
   });
 
-  function addImage() {
-    const url = window.prompt("URL");
+  async function addImage(file) {
+    var formdata = new FormData();
+    formdata.append("image", file[0], file[0].name);
 
-    if (url) {
-      editor.chain().focus().setImage({ src: url }).run();
-    }
-    return url;
+    var requestOptions = {
+      method: "POST",
+      body: formdata,
+      redirect: "follow",
+    };
+
+    await fetch("http://localhost:8080/api/v1/upload", requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result) {
+          editor.chain().focus().setImage({ src: result.data.path }).run();
+        }
+      })
+      .catch((error) => console.log("error", error));
   }
 
   return (
     <RichTextEditor editor={editor}>
-      <RichTextEditor.Toolbar sticky stickyOffset={60}>
+      <RichTextEditor.Toolbar>
         <RichTextEditor.ControlsGroup>
           <RichTextEditor.Bold />
           <RichTextEditor.Italic />
@@ -68,7 +106,21 @@ export default function TextEditor({ content }) {
           <RichTextEditor.ClearFormatting />
           <RichTextEditor.Highlight />
           <RichTextEditor.Code />
-          <button onClick={addImage}>add image from URL</button>
+          {/* <button onClick={addImage}>add image from URL</button> */}
+          {/* <input type="file" name="img" id="img" onChange={addImage} /> */}
+          <button
+            className="mantine-UnstyledButton-root mantine-RichTextEditor-control mantine-f6e83k"
+            onClick={handleShowModal}
+          >
+            <IconUpload
+              style={{
+                height: "14px",
+              }}
+            />
+          </button>
+          <ImageUploaderModal show={showModal} handleClose={handleCloseModal}>
+            <ImageUpload onDrop={addImage} />
+          </ImageUploaderModal>
         </RichTextEditor.ControlsGroup>
 
         <RichTextEditor.ControlsGroup>

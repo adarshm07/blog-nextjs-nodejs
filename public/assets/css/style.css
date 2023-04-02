@@ -3089,6 +3089,6 @@ span.logo_text {
     height: 1vw;
 } */
 
-.mantine-RichTextEditor-content {
-  /* min-height: 400px; */
+.mantine-RichTextEditor-content .ProseMirror {
+  min-height: 400px;
 }
