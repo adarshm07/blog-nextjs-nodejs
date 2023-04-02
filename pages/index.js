@@ -4,7 +4,6 @@ import Image from "next/image";
 import Login from "@/container/Login";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { PostCard } from "@/components/PostCard";
 
 // const inter = Inter({ subsets: ["latin"] });
 
@@ -40,7 +39,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        <PostCard posts={posts} />
+        <Login />
       </div>
     </>
   );

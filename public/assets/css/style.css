@@ -3092,3 +3092,31 @@ span.logo_text {
 .mantine-RichTextEditor-content .ProseMirror {
   min-height: 400px;
 }
+
+.page-title {
+  box-shadow: 6px 20px 10px #f9f9f9;
+  padding: 16px 12px;
+}
+
+/* a:hover,
+button:hover {
+  color: #223769 !important;
+  border: 1px solid #841212;
+} */
+
+.blog-title {
+  height: 300px;
+  background-color: #f9f9f9;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.blog-description {
+  padding: 20px;
+  border: 1px solid #f4f4f4;
+  border-radius: 4px;
+  margin: 10px 0;
+}

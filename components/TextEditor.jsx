@@ -96,64 +96,64 @@ export default function TextEditor({ content }) {
   }
 
   return (
-    <RichTextEditor editor={editor}>
-      <RichTextEditor.Toolbar>
-        <RichTextEditor.ControlsGroup>
-          <RichTextEditor.Bold />
-          <RichTextEditor.Italic />
-          <RichTextEditor.Underline />
-          <RichTextEditor.Strikethrough />
-          <RichTextEditor.ClearFormatting />
-          <RichTextEditor.Highlight />
-          <RichTextEditor.Code />
-          {/* <button onClick={addImage}>add image from URL</button> */}
-          {/* <input type="file" name="img" id="img" onChange={addImage} /> */}
-          <button
-            className="mantine-UnstyledButton-root mantine-RichTextEditor-control mantine-f6e83k"
-            onClick={handleShowModal}
-          >
-            <IconUpload
-              style={{
-                height: "14px",
-              }}
-            />
-          </button>
-          <ImageUploaderModal show={showModal} handleClose={handleCloseModal}>
-            <ImageUpload onDrop={addImage} />
-          </ImageUploaderModal>
-        </RichTextEditor.ControlsGroup>
+    <div>
+      <RichTextEditor editor={editor}>
+        <RichTextEditor.Toolbar>
+          <RichTextEditor.ControlsGroup>
+            <RichTextEditor.Bold />
+            <RichTextEditor.Italic />
+            <RichTextEditor.Underline />
+            <RichTextEditor.Strikethrough />
+            <RichTextEditor.ClearFormatting />
+            <RichTextEditor.Highlight />
+            <RichTextEditor.Code />
+            <button
+              className="mantine-UnstyledButton-root mantine-RichTextEditor-control mantine-f6e83k"
+              onClick={handleShowModal}
+            >
+              <IconUpload
+                style={{
+                  height: "14px",
+                }}
+              />
+            </button>
+            <ImageUploaderModal show={showModal} handleClose={handleCloseModal}>
+              <ImageUpload onDrop={addImage} />
+            </ImageUploaderModal>
+          </RichTextEditor.ControlsGroup>
 
-        <RichTextEditor.ControlsGroup>
-          <RichTextEditor.H1 />
-          <RichTextEditor.H2 />
-          <RichTextEditor.H3 />
-          <RichTextEditor.H4 />
-        </RichTextEditor.ControlsGroup>
+          <RichTextEditor.ControlsGroup>
+            <RichTextEditor.H1 />
+            <RichTextEditor.H2 />
+            <RichTextEditor.H3 />
+            <RichTextEditor.H4 />
+          </RichTextEditor.ControlsGroup>
 
-        <RichTextEditor.ControlsGroup>
-          <RichTextEditor.Blockquote />
-          <RichTextEditor.Hr />
-          <RichTextEditor.BulletList />
-          <RichTextEditor.OrderedList />
-          <RichTextEditor.Subscript />
-          <RichTextEditor.Superscript />
-        </RichTextEditor.ControlsGroup>
+          <RichTextEditor.ControlsGroup>
+            <RichTextEditor.Blockquote />
+            <RichTextEditor.Hr />
+            <RichTextEditor.BulletList />
+            <RichTextEditor.OrderedList />
+            <RichTextEditor.Subscript />
+            <RichTextEditor.Superscript />
+          </RichTextEditor.ControlsGroup>
 
-        <RichTextEditor.ControlsGroup>
-          <RichTextEditor.Link />
-          <RichTextEditor.Unlink />
-        </RichTextEditor.ControlsGroup>
+          <RichTextEditor.ControlsGroup>
+            <RichTextEditor.Link />
+            <RichTextEditor.Unlink />
+          </RichTextEditor.ControlsGroup>
 
-        <RichTextEditor.ControlsGroup>
-          <RichTextEditor.AlignLeft />
-          <RichTextEditor.AlignCenter />
-          <RichTextEditor.AlignJustify />
-          <RichTextEditor.AlignRight />
-        </RichTextEditor.ControlsGroup>
-        <GetContent />
-      </RichTextEditor.Toolbar>
+          <RichTextEditor.ControlsGroup>
+            <RichTextEditor.AlignLeft />
+            <RichTextEditor.AlignCenter />
+            <RichTextEditor.AlignJustify />
+            <RichTextEditor.AlignRight />
+          </RichTextEditor.ControlsGroup>
+          <GetContent />
+        </RichTextEditor.Toolbar>
 
-      <RichTextEditor.Content />
-    </RichTextEditor>
+        <RichTextEditor.Content />
+      </RichTextEditor>
+    </div>
   );
 }

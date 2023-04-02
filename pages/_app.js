@@ -4,6 +4,8 @@ import { MantineProvider } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { Provider } from "react-redux";
 import { store } from "../store";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function App({ Component, pageProps }) {
   const [hydrated, setHydrated] = useState(false);
@@ -26,6 +28,18 @@ export default function App({ Component, pageProps }) {
           colorScheme: "light",
         }}
       >
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
         <Component {...pageProps} />
       </MantineProvider>
     </Provider>

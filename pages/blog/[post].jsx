@@ -1,3 +1,4 @@
+import Layout from "@/components/Layout";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -28,9 +29,13 @@ export default function Post() {
   }, [post]);
 
   return (
-    <div>
-      <h2>{currentPost.title}</h2>
-      <p dangerouslySetInnerHTML={{ __html: currentPost.description }}></p>
-    </div>
+    <Layout>
+      <div className="blog-title">
+        <h4>{currentPost.title}</h4>
+      </div>
+      <div className="blog-description">
+        <p dangerouslySetInnerHTML={{ __html: currentPost.description }}></p>
+      </div>
+    </Layout>
   );
 }

@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-// import sphereHuntIcon from "../assests/logo_icon.svg";
 import toggleOff from "@/public/assets/images/toggle_off.svg";
 import toggleOn from "@/public/assets/images/toggle_on.svg";
-// import brand from "@/public/assets/images/logo_icon.svg";
 import { useRouter } from "next/router";
+import { IconDashboard, IconPencil } from "@tabler/icons-react";
 
 export default function SideBar() {
   const router = useRouter();
@@ -31,8 +30,9 @@ export default function SideBar() {
       >
         <div className="logo">
           <a hef="dashboard.html">
-            {/* <img src={sphereHuntIcon} alt="" className="logo_icon" /> */}
-            <span className="logo_text">Foster</span>
+            <span className="logo_text" style={{ fontSize: "20px" }}>
+              Foster
+            </span>
           </a>
           <button
             className="toggle for-desktop-btn"
@@ -47,7 +47,7 @@ export default function SideBar() {
             className="toggle for-mobile-btn"
             onClick={() => setAddclasses(!addClasss)}
           >
-            <img src={toggleOff} alt="" />
+            {/* <img src={toggleOff} alt="" /> */}
           </button>
         </div>
         <div className="navi">
@@ -61,8 +61,8 @@ export default function SideBar() {
               }
             >
               <a href="#" onClick={() => router.push("/dashboard")}>
-                <i className="las la-home"></i>
-                <span>Dashboard</span>
+                <IconDashboard />
+                <span className="ml-2">Dashboard</span>
               </a>
             </li>
             <li
@@ -73,8 +73,7 @@ export default function SideBar() {
               }
             >
               <a href="#" onClick={() => router.push("/dashboard/posts")}>
-                <i className="las la-bullhorn"></i>
-                <span>Posts</span>
+                <IconPencil /> <span className="ml-2">Posts</span>
               </a>
             </li>
           </ul>
