@@ -30,7 +30,7 @@ export default function Post() {
   return (
     <div>
       <h2>{currentPost.title}</h2>
-      <p>{currentPost.description}</p>
+      <p dangerouslySetInnerHTML={{ __html: currentPost.description }}></p>
     </div>
   );
 }
