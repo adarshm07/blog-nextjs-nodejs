@@ -2,11 +2,13 @@ import {
   AspectRatio,
   createStyles,
   Card,
-  Container,
-  SimpleGrid,
   Text,
   Image,
+  Button,
 } from "@mantine/core";
+import axios from "axios";
+import { toast } from "react-toastify";
+import { useFetchAllPosts } from "@/hooks/useFetchAllPosts";
 
 const useStyles = createStyles((theme) => ({
   card: {
@@ -26,33 +28,77 @@ const useStyles = createStyles((theme) => ({
 
 export function PostCard({ posts }) {
   const { classes } = useStyles();
+  const fetchAllPosts = useFetchAllPosts();
 
-  const cards = posts.map((article) => (
-    <Card
-      key={article.title}
-      p="md"
-      radius="md"
-      component="a"
-      href="#"
-      className={classes.card}
-    >
-      <AspectRatio ratio={1920 / 1080}>
-        <Image src={article.image} />
-      </AspectRatio>
-      <Text color="dimmed" size="xs" transform="uppercase" weight={700} mt="md">
-        {article.date}
-      </Text>
-      <Text className={classes.title} mt={5}>
-        {article.title}
-      </Text>
-    </Card>
-  ));
+  const deletePostById = async (id) => {
+    await axios
+      .delete(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/blog/delete/${id}`)
+      .then((res) => {
+        if (res.data.statusCode === 201) toast("Blog post deleted.");
+        fetchAllPosts();
+      })
+      .catch((error) => {
+        console.log(error);
+        toast("Error");
+      });
+  };
+
+  const cards = posts.map((article) => {
+    const regex = /<img.+?src=["'](.+?)["'].*?>/g;
+    const matches = regex.exec(article.description);
+    console.log(matches);
+    let imageUrl;
+
+    if (matches && matches.length > 0) {
+      imageUrl = matches[1];
+      console.log("image", imageUrl);
+    }
+    return (
+      <Card
+        key={article._id}
+        p="md"
+        radius="md"
+        component="div"
+        className={classes.card}
+      >
+        <AspectRatio ratio={1920 / 1080}>
+          <Image src={imageUrl} />
+        </AspectRatio>
+        {/* <Text
+          color="dimmed"
+          size="xs"
+          transform="uppercase"
+          weight={700}
+          mt="md"
+        >
+          {article.date}
+        </Text> */}
+        <Text className={classes.title} mt={5}>
+          {article.title}
+        </Text>
+        <Button.Group flex justify="end" mt="md">
+          <Button onClick={() => window.open(`/blog/${article._id}`)}>
+            View
+          </Button>
+          <Button
+            onClick={() => window.open(`/dashboard/posts/${article._id}`)}
+          >
+            Edit
+          </Button>
+          <Button onClick={(e) => deletePostById(article._id)}>Delete</Button>
+        </Button.Group>
+      </Card>
+    );
+  });
 
   return (
-    <Container py="xl">
-      <SimpleGrid cols={2} breakpoints={[{ maxWidth: "sm", cols: 1 }]}>
-        {cards}
-      </SimpleGrid>
-    </Container>
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "25% 25% 25% 25%",
+      }}
+    >
+      {cards}
+    </div>
   );
 }

@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, selectIsLoading, selectLoginStatus } from "../store/loginSlice";
+import Logo from "../public/assets/images/foster-logo.png";
+import { useRouter } from "next/router";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -8,11 +10,18 @@ const Login = () => {
   const loginStatus = useSelector((state) => state.login?.loginStatus); // add a check for the existence of the `login` slice
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
 
-  //   const handleLogin = (e) => {
-  //     e.preventDefault();
-  //     dispatch(login({ email, password }));
-  //   };
+  const handleLogin = (e) => {
+    e.preventDefault();
+    dispatch(login({ email: email, password: password }));
+  };
+
+  useEffect(() => {
+    if (loginStatus === "success") {
+      router.push("/dashboard");
+    }
+  }, [loginStatus]);
 
   return (
     <div>
@@ -21,17 +30,22 @@ const Login = () => {
           <form
             id="login-form"
             className="form"
-            onSubmit={(e) => handleForm(e)}
+            onSubmit={(e) => handleLogin(e)}
             method="post"
           >
             <div className="logo">
               <div className="logo_row">
-                <img src="images/logo/logo_icon.svg" alt="" />
-                <span className="logo_text">Foster</span>
+                <img
+                  src={Logo.src}
+                  alt={"Logo"}
+                  style={{
+                    height: "60px",
+                  }}
+                />
               </div>
             </div>
 
-            <h3 className="text-center login_title">Login</h3>
+            <h4 className="text-center login_title">Login</h4>
             {loginStatus === "error" && (
               <div className="alert alert-danger">
                 Invalid username or password

@@ -8,7 +8,6 @@ export default function Post() {
   const { post } = router.query;
 
   const [currentPost, setCurrentPost] = useState([]);
-  console.log(post);
 
   useEffect(() => {
     if (post != undefined) {

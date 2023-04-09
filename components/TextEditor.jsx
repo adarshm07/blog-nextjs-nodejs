@@ -18,6 +18,7 @@ import { ImageUpload } from "./ImageUpload";
 import ImageUploaderModal from "./ImageUploaderModal";
 import { useState } from "react";
 import { IconUpload } from "@tabler/icons-react";
+import Placeholder from "@tiptap/extension-placeholder";
 
 function GetContent() {
   const router = useRouter();
@@ -68,7 +69,17 @@ export default function TextEditor({ content }) {
       Link,
       Superscript,
       SubScript,
-      Image,
+      Image.configure({
+        inline: true,
+        resizable: true,
+        allowAlignment: true,
+        defaultAlignment: "left",
+        defaultWidth: null,
+        defaultHeight: null,
+      }),
+      Placeholder.configure({
+        placeholder: "Write something here...",
+      }),
       Highlight,
       TextAlign.configure({ types: ["heading", "paragraph"] }),
     ],

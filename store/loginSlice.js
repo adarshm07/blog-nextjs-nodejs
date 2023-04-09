@@ -20,6 +20,7 @@ const loginSlice = createSlice({
       state.isLoading = action.payload;
     },
     setLoginStatus: (state, action) => {
+      console.log("login", state.loginStatus, action.payload);
       state.loginStatus = action.payload;
     },
     setErrors: (state, action) => {
@@ -47,22 +48,47 @@ export const login = (loginInput) => async (dispatch) => {
   dispatch(setLoading(true));
   try {
     // perform login request here
-    const response = await fetch("http://localhost:8080/api/login", {
-      method: "POST",
-      body: JSON.stringify(loginInput),
-    });
-    const data = await response.json();
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
 
-    if (response.ok) {
-      // login success
-      dispatch(setLoginStatus("success"));
-      dispatch(clearForm());
-    } else {
-      // login failed
-      dispatch(setLoginStatus("error"));
-      dispatch(setErrors(data.errors));
-    }
-  } catch (error) {
+    console.log(loginInput);
+
+    var raw = JSON.stringify(loginInput);
+
+    var requestOptions = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+    };
+
+    fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/user/login`,
+      requestOptions
+    )
+      .then(async (response) => {
+        const res = await response.json();
+        if (
+          res.status === "success" &&
+          res.message === "User Logged in successfully"
+        ) {
+          dispatch(setLoginStatus("success"));
+          dispatch(clearForm());
+        } else {
+          dispatch(setLoginStatus("error"));
+        }
+      })
+      .catch((error) => {
+        console.log("error", error);
+        // handle error here
+        dispatch(setLoginStatus("error"));
+        dispatch(
+          setErrors(["An error occurred while logging in. Please try again."])
+        );
+      })
+      .finally(() => {
+        dispatch(setLoading(false));
+      });
+
     // login failed due to network error or other errors
     dispatch(setLoginStatus("error"));
     dispatch(

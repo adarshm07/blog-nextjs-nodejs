@@ -8,28 +8,7 @@ import axios from "axios";
 // const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
-  const [posts, setPosts] = useState([]);
-
-  var config = {
-    method: "get",
-    maxBodyLength: Infinity,
-    url: `${process.env.NEXT_PUBLIC_API_URL}/api/v1/blog/getall`,
-    headers: {},
-  };
-
-  const fetchBlog = async () => {
-    axios(config)
-      .then(function (response) {
-        setPosts(response.data.data);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
-
-  useEffect(() => {
-    fetchBlog();
-  }, []);
+  
   return (
     <>
       <Head>
