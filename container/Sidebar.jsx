@@ -76,6 +76,22 @@ export default function SideBar() {
                 <IconPencil /> <span className="ml-2">Posts</span>
               </a>
             </li>
+            <li
+              className={
+                router.pathname
+                  .toLowerCase()
+                  .includes("/dashboard/testimonials")
+                  ? "active"
+                  : null
+              }
+            >
+              <a
+                href="#"
+                onClick={() => router.push("/dashboard/testimonials")}
+              >
+                <IconPencil /> <span className="ml-2">Testimonials</span>
+              </a>
+            </li>
           </ul>
           <a href="/logout" className="logout">
             <i className="las la-sign-out-alt"></i>
