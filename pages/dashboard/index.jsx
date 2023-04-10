@@ -1,6 +1,7 @@
+import AuthWrapper from "@/components/AuthWrapper";
 import Layout from "@/components/Layout";
 
-export default function Dashboard() {
+function Dashboard() {
   return (
     <div>
       <Layout>
@@ -13,3 +14,5 @@ export default function Dashboard() {
     </div>
   );
 }
+
+export default AuthWrapper(Dashboard);

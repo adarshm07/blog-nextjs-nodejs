@@ -52,6 +52,8 @@ export function PostCard({ posts }) {
     if (matches && matches.length > 0) {
       imageUrl = matches[1];
       console.log("image", imageUrl);
+    } else {
+      imageUrl = "http://via.placeholder.com/640x360";
     }
     return (
       <Card
@@ -73,7 +75,15 @@ export function PostCard({ posts }) {
         >
           {article.date}
         </Text> */}
-        <Text className={classes.title} mt={5}>
+        <Text
+          className={classes.title}
+          mt={5}
+          style={{
+            whiteSpace: "nowrap",
+            overflow: "hidden",
+            textOverflow: "ellipsis",
+          }}
+        >
           {article.title}
         </Text>
         <Button.Group flex justify="end" mt="md">

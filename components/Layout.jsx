@@ -1,6 +1,7 @@
 import SideBar from "@/container/Sidebar";
+import AuthWrapper from "./AuthWrapper";
 
-export default function Layout({ children }) {
+function Layout({ children }) {
   return (
     <div
       style={{
@@ -15,3 +16,5 @@ export default function Layout({ children }) {
     </div>
   );
 }
+
+export default AuthWrapper(Layout);

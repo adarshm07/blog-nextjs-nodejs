@@ -55,7 +55,10 @@ export default function SideBar() {
             <li
               className={
                 router.pathname.toLowerCase().includes("/dashboard") &&
-                !router.pathname.toLowerCase().includes("/dashboard/posts")
+                !router.pathname.toLowerCase().includes("/dashboard/posts") &&
+                !router.pathname
+                  .toLowerCase()
+                  .includes("/dashboard/testimonials")
                   ? "active"
                   : null
               }

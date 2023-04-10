@@ -20,7 +20,6 @@ const loginSlice = createSlice({
       state.isLoading = action.payload;
     },
     setLoginStatus: (state, action) => {
-      console.log("login", state.loginStatus, action.payload);
       state.loginStatus = action.payload;
     },
     setErrors: (state, action) => {
@@ -50,8 +49,6 @@ export const login = (loginInput) => async (dispatch) => {
     // perform login request here
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-
-    console.log(loginInput);
 
     var raw = JSON.stringify(loginInput);
 
