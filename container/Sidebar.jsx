@@ -58,7 +58,8 @@ export default function SideBar() {
                 !router.pathname.toLowerCase().includes("/dashboard/posts") &&
                 !router.pathname
                   .toLowerCase()
-                  .includes("/dashboard/testimonials")
+                  .includes("/dashboard/testimonials") &&
+                !router.pathname.toLowerCase().includes("/dashboard/logo")
                   ? "active"
                   : null
               }
@@ -93,6 +94,17 @@ export default function SideBar() {
                 onClick={() => router.push("/dashboard/testimonials")}
               >
                 <IconPencil /> <span className="ml-2">Testimonials</span>
+              </a>
+            </li>
+            <li
+              className={
+                router.pathname.toLowerCase().includes("/dashboard/logo")
+                  ? "active"
+                  : null
+              }
+            >
+              <a href="#" onClick={() => router.push("/dashboard/logo")}>
+                <IconPencil /> <span className="ml-2">Logo</span>
               </a>
             </li>
           </ul>

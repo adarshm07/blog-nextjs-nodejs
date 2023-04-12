@@ -17,11 +17,11 @@ const Login = () => {
     dispatch(login({ email: email, password: password }));
   };
 
-  // useEffect(() => {
-  //   if (loginStatus === "success") {
-  //     router.push("/dashboard");
-  //   }
-  // }, [loginStatus]);
+  useEffect(() => {
+    if (loginStatus === "success") {
+      router.push("/dashboard");
+    }
+  }, [loginStatus]);
 
   return (
     <div>
