@@ -2474,7 +2474,7 @@ td.no_data {
 }
 
 .login_container {
-  background-image: url("../images/login_banner.png");
+  background-image: url("../images/foster-login.jpg");
   /* display: flex; */
 }
 .login_container .logo {
@@ -2532,7 +2532,7 @@ td.no_data {
 }
 
 .login_container {
-  background: url(../images/login_banner.png);
+  background: url(../images/foster-login.jpg);
   min-height: 100vh;
   overflow: auto;
   padding: 30px 15px;
