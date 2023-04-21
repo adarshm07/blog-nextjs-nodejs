@@ -29,6 +29,11 @@ const loginSlice = createSlice({
       state.email = "";
       state.password = "";
     },
+    logout: (state) => {
+      state.email = "";
+      state.password = "";
+      state.loginStatus = "";
+    },
   },
 });
 
@@ -40,6 +45,7 @@ export const {
   setLoginStatus,
   setErrors,
   clearForm,
+  logout,
 } = loginSlice.actions;
 
 // export thunks

@@ -3,9 +3,13 @@ import toggleOff from "@/public/assets/images/toggle_off.svg";
 import toggleOn from "@/public/assets/images/toggle_on.svg";
 import { useRouter } from "next/router";
 import { IconDashboard, IconPencil } from "@tabler/icons-react";
+import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { logout } from "@/store/loginSlice";
 
 export default function SideBar() {
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const [addClasss, setAddclasses] = useState(false);
   const [addClasss2, setAddclasses2] = useState(false);
@@ -61,6 +65,11 @@ export default function SideBar() {
                   .includes("/dashboard/testimonials") &&
                 !router.pathname.toLowerCase().includes("/dashboard/logo")
                   ? "active"
+                  : null &&
+                    !router.pathname
+                      .toLowerCase()
+                      .includes("/dashboard/portfolio")
+                  ? "active"
                   : null
               }
             >
@@ -107,11 +116,22 @@ export default function SideBar() {
                 <IconPencil /> <span className="ml-2">Logo</span>
               </a>
             </li>
+            <li
+              className={
+                router.pathname.toLowerCase().includes("/dashboard/portfolio")
+                  ? "active"
+                  : null
+              }
+            >
+              <a href="#" onClick={() => router.push("/dashboard/portfolio")}>
+                <IconPencil /> <span className="ml-2">Portfolio</span>
+              </a>
+            </li>
           </ul>
-          <a href="/logout" className="logout">
+          <Link href="/" className="logout" onClick={() => dispatch(logout())}>
             <i className="las la-sign-out-alt"></i>
             <span>Logout</span>
-          </a>
+          </Link>
         </div>
       </div>
       <div className="mobile_menu">

@@ -5,7 +5,15 @@ import React from "react";
 import { ButtonGroup } from "react-bootstrap";
 import { toast } from "react-toastify";
 
-const Card = ({ id, title, description, name, link, deleteById }) => {
+const Card = ({
+  id,
+  title,
+  description,
+  name,
+  link,
+  showEdit = true,
+  deleteById,
+}) => {
   return (
     <div
       className="testimonial card"
@@ -19,7 +27,7 @@ const Card = ({ id, title, description, name, link, deleteById }) => {
         <h2 className="card-title">{title}</h2>
         <p className="card-description">{description}</p>
         <div className="d-flex">
-          <span className="pr-1">By: </span>
+          {name && <span className="pr-1">By: </span>}
           <p className="card-name">{name}</p>
         </div>
       </div>
@@ -38,12 +46,14 @@ const Card = ({ id, title, description, name, link, deleteById }) => {
         >
           <IconExternalLink />
         </a>
-        <Button
-          variant="filled"
-          onClick={() => window.open(`/dashboard/testimonials/${id}`)}
-        >
-          Edit
-        </Button>
+        {showEdit && (
+          <Button
+            variant="filled"
+            onClick={() => window.open(`/dashboard/testimonials/${id}`)}
+          >
+            Edit
+          </Button>
+        )}
         <Button variant="outline" onClick={() => deleteById(id)}>
           Delete
         </Button>

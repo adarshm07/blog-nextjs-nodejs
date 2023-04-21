@@ -26,10 +26,10 @@ export default function EditTestimonial() {
       .then((res) => {
         if (res.data.statusCode === 200) {
           setTestimonial({
-            name: res.data.data.name,
-            title: res.data.data.title,
-            description: res.data.data.description,
-            url: res.data.data.url,
+            name: res.data.data?.name,
+            title: res.data.data?.title,
+            description: res.data.data?.description,
+            url: res.data.data?.url,
           });
         }
       });

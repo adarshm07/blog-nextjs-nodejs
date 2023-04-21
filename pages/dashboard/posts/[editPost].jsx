@@ -43,7 +43,6 @@ export default function EditPost() {
   };
 
   useEffect(() => {
-    console.log(post);
     if (post.action === "editpost") {
       axios
         .put(
@@ -60,22 +59,23 @@ export default function EditPost() {
           console.log(error);
         });
     }
-  }, [post]);
+  }, [editPost, post]);
 
   return (
     <Layout>
       <div className="mt-4">
-        {currentPost && currentPost.title ? (
-          <input
-            type={"text"}
-            defaultValue={currentPost.title}
-            max="200"
-            name="title"
-            onBlur={handleChange}
-            className="form-control mb-4"
-            placeholder="Post Title"
-          />
-        ) : null}
+        {/* {currentPost && currentPost.title ? ( */}
+        <input
+          type={"text"}
+          defaultValue={currentPost.title}
+          max="200"
+          name="title"
+          onChange={(e) => setTitle(e.target.value)}
+          onBlur={handleChange}
+          className="form-control mb-4"
+          placeholder="Post Title"
+        />
+        {/* ) : null} */}
         {currentPost && currentPost.description ? (
           <TextEditor content={currentPost.description} />
         ) : (

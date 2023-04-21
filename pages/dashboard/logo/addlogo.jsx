@@ -21,7 +21,10 @@ export default function AddLogo() {
       redirect: "follow",
     };
 
-    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/upload`, requestOptions)
+    await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/api/v1/upload`,
+      requestOptions
+    )
       .then((response) => response.json())
       .then(async (result) => {
         let raw = { url: await result.data.path };
