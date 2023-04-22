@@ -1,10 +1,6 @@
 import { ImageUpload } from "@/components/ImageUpload";
 import Layout from "@/components/Layout";
-import TextEditor from "@/components/TextEditor";
-import { Button } from "@mantine/core";
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { toast } from "react-toastify";
 
 export default function AddLogo() {
@@ -37,7 +33,11 @@ export default function AddLogo() {
         })
           .then(async (res) => {
             const result = await res.json();
-            if (result.statusCode === 201) toast("Logo uploaded");
+            console.log("result", result);
+            if (result.statusCode === 201) toast.success("Logo uploaded");
+            setTimeout(() => {
+              window.location.href = "/dashboard/logo";
+            }, 1000);
           })
           .catch((err) => {
             console.log(err);

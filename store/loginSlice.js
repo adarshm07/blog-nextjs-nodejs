@@ -20,6 +20,7 @@ const loginSlice = createSlice({
       state.isLoading = action.payload;
     },
     setLoginStatus: (state, action) => {
+      console.log("loginStatus", state.loginStatus);
       state.loginStatus = action.payload;
     },
     setErrors: (state, action) => {
@@ -93,10 +94,10 @@ export const login = (loginInput) => async (dispatch) => {
       });
 
     // login failed due to network error or other errors
-    dispatch(setLoginStatus("error"));
-    dispatch(
-      setErrors(["An error occurred while logging in. Please try again."])
-    );
+    // dispatch(setLoginStatus("error"));
+    // dispatch(
+    //   setErrors(["An error occurred while logging in. Please try again."])
+    // );
   } finally {
     dispatch(setLoading(false));
   }

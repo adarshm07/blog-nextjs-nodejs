@@ -6,7 +6,7 @@ function Layout({ children }) {
     <div
       style={{
         display: "grid",
-        gridTemplateColumns: "14% 82%",
+        gridTemplateColumns: "14% 86%",
         // gap: "40px",
         height: "100%",
       }}

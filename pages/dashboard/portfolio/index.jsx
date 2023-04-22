@@ -54,7 +54,7 @@ export default function Portfolio() {
           <div
             style={{
               display: "flex",
-              flexWrap: "nowrap",
+              flexWrap: "wrap",
               gap: "20px",
             }}
           >

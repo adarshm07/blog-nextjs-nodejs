@@ -2,7 +2,14 @@ import React, { useState } from "react";
 import toggleOff from "@/public/assets/images/toggle_off.svg";
 import toggleOn from "@/public/assets/images/toggle_on.svg";
 import { useRouter } from "next/router";
-import { IconDashboard, IconPencil } from "@tabler/icons-react";
+import {
+  IconDashboard,
+  IconFile,
+  IconLogout,
+  IconPencil,
+  IconUsersGroup,
+  IconWorld,
+} from "@tabler/icons-react";
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { logout } from "@/store/loginSlice";
@@ -63,12 +70,8 @@ export default function SideBar() {
                 !router.pathname
                   .toLowerCase()
                   .includes("/dashboard/testimonials") &&
-                !router.pathname.toLowerCase().includes("/dashboard/logo")
-                  ? "active"
-                  : null &&
-                    !router.pathname
-                      .toLowerCase()
-                      .includes("/dashboard/portfolio")
+                !router.pathname.toLowerCase().includes("/dashboard/logo") &&
+                !router.pathname.toLowerCase().includes("/dashboard/portfolio")
                   ? "active"
                   : null
               }
@@ -102,7 +105,7 @@ export default function SideBar() {
                 href="#"
                 onClick={() => router.push("/dashboard/testimonials")}
               >
-                <IconPencil /> <span className="ml-2">Testimonials</span>
+                <IconUsersGroup /> <span className="ml-2">Testimonials</span>
               </a>
             </li>
             <li
@@ -113,7 +116,7 @@ export default function SideBar() {
               }
             >
               <a href="#" onClick={() => router.push("/dashboard/logo")}>
-                <IconPencil /> <span className="ml-2">Logo</span>
+                <IconWorld /> <span className="ml-2">Logo</span>
               </a>
             </li>
             <li
@@ -124,13 +127,13 @@ export default function SideBar() {
               }
             >
               <a href="#" onClick={() => router.push("/dashboard/portfolio")}>
-                <IconPencil /> <span className="ml-2">Portfolio</span>
+                <IconFile /> <span className="ml-2">Portfolio</span>
               </a>
             </li>
           </ul>
           <Link href="/" className="logout" onClick={() => dispatch(logout())}>
-            <i className="las la-sign-out-alt"></i>
-            <span>Logout</span>
+            <IconLogout />
+            <span className="ml-2">Logout</span>
           </Link>
         </div>
       </div>
@@ -139,7 +142,6 @@ export default function SideBar() {
           <i className="las la-bars"></i>
         </button>
         <div className="brand">
-          {/* <img src={brand} alt="" className="logo_icon" /> */}
           <span className="logo_text">Foster</span>
         </div>
       </div>

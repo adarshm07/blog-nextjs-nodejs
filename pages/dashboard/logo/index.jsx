@@ -26,7 +26,7 @@ export default function Logos() {
       })
       .catch((error) => {
         console.log(error);
-        toast("Error");
+        toast.error("Error");
       });
   };
 
@@ -54,10 +54,19 @@ export default function Logos() {
           <div
             style={{
               display: "flex",
-              flexWrap: "nowrap",
+              flexWrap: "wrap",
               gap: "20px",
             }}
           >
+            {logos.length === 0 && (
+              <span>
+                No Logo.{" "}
+                <Link className="text-primary" href="/dashboard/logo/addlogo">
+                  <i>Click here</i>
+                </Link>{" "}
+                to upload.
+              </span>
+            )}
             {logos &&
               logos.map((item) => {
                 return (

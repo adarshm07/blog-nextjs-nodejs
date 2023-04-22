@@ -39,7 +39,7 @@ export function PostCard({ posts }) {
       })
       .catch((error) => {
         console.log(error);
-        toast("Error");
+        toast.error("Error");
       });
   };
 

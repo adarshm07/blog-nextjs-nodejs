@@ -19,7 +19,7 @@ const Login = () => {
   };
 
   useEffect(() => {
-    console.log(isLoading);
+    console.log(loginStatus);
 
     if (loginStatus === "success") {
       router.push("/dashboard");

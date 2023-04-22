@@ -28,7 +28,7 @@ export default function Testimonials() {
       })
       .catch((error) => {
         console.log(error);
-        toast("Error");
+        toast.error("Error");
       });
   };
 
