@@ -89,7 +89,7 @@ export const login = (loginInput) => async (dispatch) => {
         );
       })
       .finally(() => {
-        dispatch(setLoading(false));
+        // dispatch(setLoading(false));
       });
 
     // login failed due to network error or other errors

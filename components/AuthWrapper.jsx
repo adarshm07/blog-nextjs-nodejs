@@ -5,7 +5,6 @@ import { selectLoginStatus } from "@/store/loginSlice";
 const AuthWrapper = (Component) => {
   const AuthWrapper = (props) => {
     const loginStatus = useSelector(selectLoginStatus);
-    console.log("loginStatus", loginStatus);
 
     if (loginStatus === "success") {
       return <Component {...props} />;

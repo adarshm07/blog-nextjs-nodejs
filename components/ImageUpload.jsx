@@ -29,7 +29,13 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export function ImageUpload({ onDrop }) {
+export function ImageUpload({
+  onDrop,
+  accept = IMAGE_MIME_TYPE,
+  reject = "image file less than 5mb",
+  uploadImg = "Upload images",
+  description = "Drag&apos;n&apos;drop files here to upload. We can accept only <i>.jpg, .png files</i> files that are less than 5mb in size.",
+}) {
   const { classes, theme } = useStyles();
   const openRef = useRef(null);
 
@@ -40,7 +46,7 @@ export function ImageUpload({ onDrop }) {
         onDrop={onDrop}
         className={classes.dropzone}
         radius="md"
-        accept={IMAGE_MIME_TYPE}
+        accept={accept}
         maxSize={5 * 1024 ** 2}
       >
         <div style={{ pointerEvents: "none" }}>
@@ -70,12 +76,11 @@ export function ImageUpload({ onDrop }) {
 
           <Text ta="center" fw={700} fz="lg" mt="xl">
             <Dropzone.Accept>Drop files here</Dropzone.Accept>
-            <Dropzone.Reject>image file less than 5mb</Dropzone.Reject>
-            <Dropzone.Idle>Upload images</Dropzone.Idle>
+            <Dropzone.Reject>{reject}</Dropzone.Reject>
+            <Dropzone.Idle>{uploadImg}</Dropzone.Idle>
           </Text>
           <Text ta="center" fz="sm" mt="xs" c="dimmed">
-            Drag&apos;n&apos;drop files here to upload. We can accept only{" "}
-            <i>.jpg, .png files</i> files that are less than 5mb in size.
+            {description}
           </Text>
         </div>
       </Dropzone>

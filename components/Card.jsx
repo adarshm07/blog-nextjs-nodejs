@@ -1,19 +1,9 @@
 import { Button } from "@mantine/core";
-import { IconEdit, IconExternalLink } from "@tabler/icons-react";
-import axios from "axios";
+import { IconExternalLink } from "@tabler/icons-react";
 import React from "react";
 import { ButtonGroup } from "react-bootstrap";
-import { toast } from "react-toastify";
 
-const Card = ({
-  id,
-  title,
-  description,
-  name,
-  link,
-  showEdit = true,
-  deleteById,
-}) => {
+const Card = ({ id, title, description, name, link, showEdit = true, deleteById }) => {
   return (
     <div
       className="testimonial card"

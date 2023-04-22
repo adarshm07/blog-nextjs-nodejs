@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, selectIsLoading, selectLoginStatus } from "../store/loginSlice";
@@ -18,10 +19,12 @@ const Login = () => {
   };
 
   useEffect(() => {
+    console.log(isLoading);
+
     if (loginStatus === "success") {
       router.push("/dashboard");
     }
-  }, [loginStatus]);
+  }, [isLoading, loginStatus, router]);
 
   return (
     <div>

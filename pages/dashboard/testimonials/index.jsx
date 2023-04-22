@@ -69,7 +69,7 @@ export default function Testimonials() {
                     title={item.title}
                     description={item.description}
                     name={item.name}
-                    link={item.link}
+                    link={item.url}
                     deleteById={deletePostById}
                   />
                 );

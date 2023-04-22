@@ -18,7 +18,6 @@ export default function AddPortfolio() {
     axios
       .post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/profile/add`, portfolio)
       .then((res) => {
-        console.log(res.data.statusCode);
         if (res.data.statusCode === 201) toast.success("Portfolio published.");
       });
   };
@@ -42,33 +41,7 @@ export default function AddPortfolio() {
         console.log(data);
         setPortfolio({ ...portfolio, url: data.data.path });
       })
-
-      // .then(async (result) => {
-      //   let raw = { url: await result.data.path,  };
-      //   fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/profile/add`, {
-      //     method: "POST",
-      //     body: JSON.stringify(raw),
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //   })
-      //     .then(async (res) => {
-      //       const result = await res.json();
-      //       if (result.statusCode === 201) toast("Logo uploaded");
-      //     })
-      //     .catch((err) => {
-      //       console.log(err);
-      //       toast("Error, couldn't upload");
-      //     });
-      // })
       .catch((error) => console.log("error", error));
-
-    // axios
-    //   .post(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/profile/add`, formData)
-    //   .then((res) => {
-    //     console.log(res.data.statusCode);
-    //     if (res.data.statusCode === 201) toast.success("Portfolio published.");
-    //   });
   };
 
   return (
@@ -84,7 +57,18 @@ export default function AddPortfolio() {
         <hr />
         <br />
         {/* input type file */}
-        <ImageUpload onDrop={onUpload} />
+        <ImageUpload
+          onDrop={onUpload}
+          accept={["application/pdf"]}
+          reject="PDF file less than 5mb"
+          uploadImg="Upload PDF"
+          description="Drag'n'drop files here to upload. We can accept only .pdf files that are less than 5mb in size."
+        />
+        {portfolio.url !== "" ? (
+          <div style={{ margin: "10px 0px" }}>
+            <span className="text-muted">PDF Uploaded. Ready to Publish.</span>
+          </div>
+        ) : null}
         <textarea
           max="400"
           name="description"

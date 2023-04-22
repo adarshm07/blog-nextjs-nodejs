@@ -53,18 +53,24 @@ export default function Logos() {
         <div className="my-4">
           <div
             style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(4, auto)",
+              display: "flex",
+              flexWrap: "nowrap",
               gap: "20px",
             }}
           >
             {logos &&
               logos.map((item) => {
                 return (
-                  <div key={item._id} style={{ position: "relative" }}>
+                  <div
+                    key={item._id}
+                    style={{
+                      position: "relative",
+                      border: "1px solid #f4f4f4",
+                    }}
+                  >
                     {item.url && (
                       <div>
-                        <img src={item.url} alt="" height="200" width="auto" />
+                        <img src={item.url} alt="" height="100" width="auto" />
                         <button
                           style={{
                             backgroundColor: "red",
