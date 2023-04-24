@@ -44,7 +44,7 @@ export default function Testimonials() {
             <h4>Testimonials</h4>
           </div>
         </div>
-        <div className="d-flex justify-content-end m-2">
+        <div className="d-flex m-2">
           <Link
             className="btn btn-outlined-secondary border rounded"
             href={"/dashboard/testimonials/addtestimonial"}

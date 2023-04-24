@@ -11,7 +11,7 @@ export default function Posts() {
 
   useEffect(() => {
     fetchAllPosts();
-  }, [allPosts]);
+  }, []);
 
   return (
     <Layout>
@@ -21,7 +21,7 @@ export default function Posts() {
             <h4>Posts</h4>
           </div>
         </div>
-        <div className="d-flex justify-content-end m-2">
+        <div className="d-flex m-2">
           <Link
             className="btn btn-outlined-secondary border rounded"
             href={"/dashboard/posts/addpost"}

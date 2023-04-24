@@ -2,7 +2,6 @@ import Head from "next/head";
 import Login from "@/container/Login";
 
 export default function Home() {
-  
   return (
     <>
       <Head>

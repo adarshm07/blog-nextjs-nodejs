@@ -42,7 +42,7 @@ export default function Logos() {
             <h4>Logos</h4>
           </div>
         </div>
-        <div className="d-flex justify-content-end m-2">
+        <div className="d-flex m-2">
           <Link
             className="btn btn-outlined-secondary border rounded"
             href={"/dashboard/logo/addlogo"}

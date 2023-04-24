@@ -46,12 +46,10 @@ export function PostCard({ posts }) {
   const cards = posts.map((article) => {
     const regex = /<img.+?src=["'](.+?)["'].*?>/g;
     const matches = regex.exec(article.description);
-    console.log(matches);
     let imageUrl;
 
     if (matches && matches.length > 0) {
       imageUrl = matches[1];
-      console.log("image", imageUrl);
     } else {
       imageUrl = "http://via.placeholder.com/640x360";
     }

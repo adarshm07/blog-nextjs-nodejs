@@ -29,6 +29,8 @@ export default function EditPost() {
       axios(config)
         .then(function (response) {
           setCurrentPost(response.data.data);
+          console.log("title", response.data.data.title);
+          setTitle(response.data.data.title);
         })
         .catch(function (error) {
           console.log(error);
@@ -40,7 +42,7 @@ export default function EditPost() {
   const handleChange = (e) => {
     setTitle(e.target.value);
     dispatch(updateTitle(e.target.value));
-  };
+}
 
   useEffect(() => {
     if (post.action === "editpost") {
@@ -67,7 +69,9 @@ export default function EditPost() {
         {/* {currentPost && currentPost.title ? ( */}
         <input
           type={"text"}
-          defaultValue={currentPost.title}
+          // defaultValue={currentPost.title}
+          id="title"
+          value={title}
           max="200"
           name="title"
           onChange={(e) => setTitle(e.target.value)}
