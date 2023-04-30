@@ -1,4 +1,5 @@
 import AuthWrapper from "@/components/AuthWrapper";
+import { Count } from "@/components/Count";
 import Layout from "@/components/Layout";
 
 function Dashboard() {
@@ -9,6 +10,7 @@ function Dashboard() {
           <div className="page-title">
             <h4>Dashboard</h4>
           </div>
+          <Count />
         </div>
       </Layout>
     </div>

@@ -130,7 +130,26 @@ export function TableSort({ data, setUpdate }) {
         {/* <td>{row.objection}</td> */}
         <td>
           <ContactModal id={row._id} setUpdate={setUpdate}>
-            {row.name}
+            <div>
+              <label className="label-contact">Name: </label>
+              <span className="data-contact">{row.name}</span>
+            </div>
+            <div>
+              <label className="label-contact">Email: </label>
+              <span className="data-contact">{row.email}</span>
+            </div>
+            <div>
+              <label className="label-contact">Number: </label>
+              <span className="data-contact">{row.number}</span>
+            </div>
+            <div>
+              <label className="label-contact">Subject: </label>
+              <span className="data-contact">{row.subject}</span>
+            </div>
+            <div>
+              <label className="label-contact">Message: </label>
+              <span className="data-contact">{row.objection}</span>
+            </div>
           </ContactModal>
         </td>
       </tr>

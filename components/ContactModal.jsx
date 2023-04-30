@@ -21,7 +21,7 @@ export default function ContactModal({ children, id, setUpdate }) {
 
   return (
     <>
-      <Modal opened={opened} onClose={close} title="Authentication" centered>
+      <Modal opened={opened} onClose={close} title="Contact Details" centered>
         {children}
       </Modal>
 
