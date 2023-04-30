@@ -7,6 +7,7 @@ import {
   IconFile,
   IconLogout,
   IconPencil,
+  IconUsers,
   IconUsersGroup,
   IconWorld,
 } from "@tabler/icons-react";
@@ -71,7 +72,10 @@ export default function SideBar() {
                   .toLowerCase()
                   .includes("/dashboard/testimonials") &&
                 !router.pathname.toLowerCase().includes("/dashboard/logo") &&
-                !router.pathname.toLowerCase().includes("/dashboard/portfolio")
+                !router.pathname
+                  .toLowerCase()
+                  .includes("/dashboard/portfolio") &&
+                !router.pathname.toLowerCase().includes("/dashboard/contacts")
                   ? "active"
                   : null
               }
@@ -128,6 +132,17 @@ export default function SideBar() {
             >
               <a href="#" onClick={() => router.push("/dashboard/portfolio")}>
                 <IconFile /> <span className="ml-2">Portfolio</span>
+              </a>
+            </li>
+            <li
+              className={
+                router.pathname.toLowerCase().includes("/dashboard/contacts")
+                  ? "active"
+                  : null
+              }
+            >
+              <a href="#" onClick={() => router.push("/dashboard/contacts")}>
+                <IconUsers /> <span className="ml-2">Contacts</span>
               </a>
             </li>
           </ul>
