@@ -10,6 +10,7 @@ export default function AddCount({
   completedProject,
   countries,
   industriesSaved,
+  setNewData,
 }) {
   const [opened, { open, close }] = useDisclosure(false);
   const [count, setCount] = useState({
@@ -44,6 +45,7 @@ export default function AddCount({
       })
       .then((res) => {
         toast.success("Count updated successfully");
+        setNewData(true);
         close();
       })
       .catch((err) => {

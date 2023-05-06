@@ -60,19 +60,23 @@ const icons = {
 
 export function Count() {
   const [data, setData] = useState([]);
+  const [newData, setNewData] = useState(false);
 
   const getCount = async () => {
     axios
       .get(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/count/getAll`)
       .then((res) => {
         setData(res.data.data);
+        setNewData(false);
       });
   };
 
+  console.log("new Data", newData);
+
   useEffect(() => {
     getCount();
-  }, []);
-  console.log(data);
+  }, [newData]);
+  // console.log(data);
   return (
     <div style={{ marginTop: "20px", padding: "0 40px" }}>
       <SimpleGrid
@@ -85,26 +89,31 @@ export function Count() {
         {/* {data && data.map((item) => <Card key={item.title} />)} */}
         <Card
           title={"Active Project"}
-          count={data.activeProject}
+          count={data?.activeProject}
           icon={<IconProgress />}
         />
         <Card
           title={"Completed Project"}
-          count={data.completedProject}
+          count={data?.completedProject}
           icon={<IconArrowUpRight />}
         />
-        <Card title={"Countries"} count={data.countries} icon={<IconWorld />} />
+        <Card
+          title={"Countries"}
+          count={data?.countries}
+          icon={<IconWorld />}
+        />
         <Card
           title={"Industries Saved"}
-          count={data.industriesSaved}
+          count={data?.industriesSaved}
           icon={<IconBuildingFactory />}
         />
       </SimpleGrid>
       <AddCount
-        activeProject={data.activeProject}
-        completedProject={data.completedProject}
-        countries={data.countries}
-        industriesSaved={data.industriesSaved}
+        activeProject={data?.activeProject}
+        completedProject={data?.completedProject}
+        countries={data?.countries}
+        industriesSaved={data?.industriesSaved}
+        setNewData={setNewData}
       />
     </div>
   );
