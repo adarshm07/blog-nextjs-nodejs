@@ -96,7 +96,7 @@ export default function TextEditor({ content }) {
       redirect: "follow",
     };
 
-    await fetch("http://localhost:4000/api/v1/upload", requestOptions)
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/upload`, requestOptions)
       .then((response) => response.json())
       .then((result) => {
         if (result) {
